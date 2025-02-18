@@ -6,7 +6,7 @@ import Cards from "./dbCards.js";
 //App Config
 const app = express();
 const port = process.env.PORT || 8001;
-const connection_url =
+const MONGODB_URL =
   "mongodb+srv://dougscheible:fossil69@cluster1.2l0ue.mongodb.net/datingDB?retryWrites=true&w=majority&appName=dating-app-mern";
 
 // Middleware
@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(Cors());
 
 //DB Config
-mongoose.connect(connection_url, {
+mongoose.connect(MONGODB_URL, {
   //useNewUrlParser: true,
   //useUnifiedTopology: true,
 });
