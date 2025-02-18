@@ -4,7 +4,7 @@ import "./DatingCards.css";
 import axios from "./axios.js";
 
 const DatingCards = () => {
-  const [people, setPeople] = useState([
+  /*const [people, setPeople] = useState([
     {
       name: "Random Guy",
       imgUrl:
@@ -24,7 +24,17 @@ const DatingCards = () => {
       name: "Another Girl",
       imgUrl: "https://cdn.wallpapersafari.com/87/7/8QCtNK.jpg",
     },
-  ]);
+  ]);*/
+
+  const [people, setPeople] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      console.log("HERE IN USEEFFECT");
+      const req = await axios.get("/dating/cards");
+      setPeople(req.data);
+    }
+    fetchData();
+  }, []);
 
   const swiped = (direction, nameToDelete) => {
     console.log("receiving " + nameToDelete);

@@ -43,13 +43,27 @@ app.post("/dating/cards", async (req, res) => {
 });
 
 app.get("/dating/cards", async (req, res) => {
-  Cards.find((err, data) => {
-    if (err) {
-      res.status(500).send(err);
+  try {
+    const data = await Cards.find(); // Mongoose's find() returns a promise
+    res.status(200).send(data); // Send the data if successful
+  } catch (err) {
+    res.status(500).send(err); // Catch any errors and send a 500 response
+  }
+});
+
+app.delete("/dating/cards", async (req, res) => {
+  try {
+    const result = await Cards.deleteMany({}); // Empty filter deletes all documents
+    if (result.deletedCount > 0) {
+      res.status(200).send({
+        message: `${result.deletedCount} card(s) deleted successfully.`,
+      });
     } else {
-      res.status(200).send(data);
+      res.status(404).send({ message: "No cards found to delete." });
     }
-  });
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 
 //Listener
