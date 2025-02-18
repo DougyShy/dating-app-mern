@@ -1,0 +1,1 @@
+web: node ./dating-app-backend/server.js
