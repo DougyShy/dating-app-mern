@@ -34,7 +34,6 @@ app.post("/dating/cards", async (req, res) => {
   const dbCard = req.body;
   Cards.create(dbCard)
     .then((result) => {
-      console.log("HERE BILLY");
       res.send(result);
     })
     .catch((err) => {

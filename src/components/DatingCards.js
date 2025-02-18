@@ -29,7 +29,6 @@ const DatingCards = () => {
   const [people, setPeople] = useState([]);
   useEffect(() => {
     async function fetchData() {
-      console.log("HERE IN USEEFFECT");
       const req = await axios.get("/dating/cards");
       setPeople(req.data);
     }
